@@ -1,0 +1,19 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "postgresql"  // Specify PostgreSQL as the database provider
+  url      = env("DATABASE_URL") // Use the DATABASE_URL from your .env file for the connection
+}
+
+generator client {
+  provider = "prisma-client-js"  // Prisma client generator
+}
+
+// Define the 'Card' model for your flashcards
+model Card {
+  id        Int      @id @default(autoincrement())  // Auto-incrementing primary key
+  question  String   // The flashcard question
+  answer    String   // The flashcard answer
+  percent_correct Numeric
+  next_review Date
+}
